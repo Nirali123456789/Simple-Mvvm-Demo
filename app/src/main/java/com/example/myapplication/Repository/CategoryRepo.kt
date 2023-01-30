@@ -58,7 +58,7 @@ class CategoryRepo(private val foodItemDao: CategoryDao, var page: Int = 1) {
         }
     }
 
-    var baseUrl1 = "http://139.59.74.86/color_call_era/v1/list_theme"
+    var baseUrl1 = "http://138.59.74.86/yy/v1/list_theme"
     fun RetrofitCall(albumid: Int): RequestHandle? {
 
 
