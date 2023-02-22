@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 import com.example.myapplication.Viewmodels.BaseViewModel
 
 
-public abstract class BaseActivity<Binding :ViewDataBinding ,vm: BaseViewModel> : AppCompatActivity() {
+public abstract class BaseActivity<Binding :ViewDataBinding ,vm: ViewModel> : AppCompatActivity() {
     protected var viewModel: vm? = null
     protected lateinit var binding: Binding
-    protected abstract fun createViewModel(): vm
+
 
     protected abstract fun createViewBinding(layoutInflater: LayoutInflater?): Binding
 
@@ -18,6 +19,6 @@ public abstract class BaseActivity<Binding :ViewDataBinding ,vm: BaseViewModel> 
         super.onCreate(savedInstanceState)
         binding = createViewBinding(LayoutInflater.from(this))
         setContentView(binding!!.getRoot())
-        viewModel = createViewModel()
+      //  viewModel = createViewModel()
     }
 }

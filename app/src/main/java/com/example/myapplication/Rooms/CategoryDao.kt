@@ -1,5 +1,6 @@
 package com.example.myapplication.RoomDatabase
 
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,8 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CategoryDao {
 
-    @Query("SELECT * FROM Category")
-    fun getFoodItems(): Flow<MutableList<Category>>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun insertAll(Courses: ArrayList<Category>)

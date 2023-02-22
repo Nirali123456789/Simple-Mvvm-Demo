@@ -17,14 +17,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.example.colorcall_new.R
-import com.example.myapplication.Utility.Category
-import com.example.myapplication.Intefaces.onItemClick
-import com.example.colorcall_new.databinding.ItemProgressBinding
-import com.example.colorcall_new.databinding.PosterItemsBinding
+import com.example.myapplication.Interface.onItemClick
+import com.example.myapplication.Models.Category
+import com.example.myapplication.R
+import com.example.myapplication.databinding.PosterItemsBinding
 
 
-class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
+class ThemeAdapter(var context: Activity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var list: ArrayList<Category> = arrayListOf()
     private val LOADING = 0
@@ -42,58 +41,39 @@ class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
         }
     }
 
-//    companion object {
-//        var adType: Int = 1
-//        var postType: Int = 0
-//    }
 
-    fun setOnClickListener(onItemClick: onItemClick) {
-        onItemClick1 = onItemClick
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-         when (viewType) {
+        when (viewType) {
             ITEM -> {
                 val binding = PosterItemsBinding.inflate(inflater, parent, false)
-                return PosterViewHolder(binding, onItemClick1)
+                return PosterViewHolder(binding)
 
 
             }
-            LOADING -> {
-                val binding = ItemProgressBinding.inflate(inflater, parent, false)
-                return LoadingViewHolder(binding)
-            }
+
         }
 
 
         val binding = PosterItemsBinding.inflate(inflater, parent, false)
-        return PosterViewHolder(binding, onItemClick1)
+        return PosterViewHolder(binding)
     }
 
     fun setData(posterList: ArrayList<Category>) {
 
-        // list = arrayListOf()
-        list= posterList!!
+        list = posterList!!
         notifyDataSetChanged()
     }
 
 
     override fun onBindViewHolder(holder1: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            ITEM -> {
-                var holder: PosterViewHolder = holder1 as PosterViewHolder
-
-                holder.setData(list.get(position), context,  onItemClick1)
 
 
-            }
-            LOADING -> {
-                val loadingViewHolder = holder1 as LoadingViewHolder
-                loadingViewHolder.progressBar.visibility = View.VISIBLE
-            }
-        }
+        var holder: PosterViewHolder = holder1 as PosterViewHolder
+        holder.setData(list.get(position), context)
 
 
     }
@@ -107,55 +87,26 @@ class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
         return if (position == list.size - 1 && isLoadingAdded) LOADING else ITEM
     }
 
-    fun addLoadingFooter() {
-        isLoadingAdded = true
-        add(Category())
-    }
-    fun removeLoadingFooter() {
-        isLoadingAdded = false
-        val position: Int = list.size - 1
-        val result: Category = list.get(list.size-1)
-        if (result != null) {
-            list.removeAt(position)
-            notifyItemRemoved(position)
-        }
-    }
 
     fun add(movie: Category) {
         list.add(movie)
-     //   Log.d("TAG", "onSucces: " +  movie.t_name+">>"+list.size  )
         notifyItemInserted(list.size - 1)
     }
 
-    fun addAll(moveResults: List<Category>) {
-        //list.addAll(moveResults)
-    //    notifyDataSetChanged()
-        for (result in moveResults) {
-            add(result)
-        }
-    }
 
-    class LoadingViewHolder(itemView: ItemProgressBinding) : RecyclerView.ViewHolder(itemView.root) {
-        public val progressBar: ProgressBar
-
-        init {
-            progressBar = itemView.loadmoreProgress
-        }
-    }
-
-    class PosterViewHolder(val view: PosterItemsBinding, onItemClick1: onItemClick) :
+    class PosterViewHolder(val view: PosterItemsBinding) :
         RecyclerView.ViewHolder(view.root) {
 
 
         fun setData(
             poster: Category,
-            context: Context, onItemClick1: onItemClick
+            context: Context
 
         ) {
             Log.d("TAG", "setData:1223 " + poster.t_name)
             view.li1.setOnClickListener {
                 Log.d("TAG", "setData: " + "onclick")
-                onItemClick1.onClick(poster, adapterPosition)
+                //onItemClick1.onClick(poster, adapterPosition)
 
 
             }
@@ -176,7 +127,6 @@ class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
                     }
 
 
-
                     override fun onResourceReady(
                         resource: Bitmap?,
                         model: Any?,
@@ -184,7 +134,7 @@ class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        Log.d("TAG", "setData: " + "loadedd"+poster.t_thumb)
+                        Log.d("TAG", "setData: " + "loadedd" + poster.t_thumb)
                         return false
                     }
 
@@ -193,8 +143,6 @@ class ThemeAdapter(var context: Activity, var onItemClick1: onItemClick) :
 
         }
     }
-
-
 
 
 }

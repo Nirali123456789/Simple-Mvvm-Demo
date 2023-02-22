@@ -3,7 +3,7 @@ package com.example.myapplication.RoomDatabase
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.myapplication.Utility.Category
+import com.example.myapplication.Models.Category
 import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [Category::class], version = 1,exportSchema = false)

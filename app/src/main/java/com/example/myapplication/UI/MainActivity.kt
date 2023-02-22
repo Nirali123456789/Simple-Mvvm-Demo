@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.Adapters.ThemeAdapter
+import com.example.myapplication.App
 import com.example.myapplication.Base.BaseActivity
 import com.example.myapplication.Models.Category
 import com.example.myapplication.R
@@ -22,7 +23,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
     var list: ArrayList<Category> = arrayListOf()
     private var currentApiVersion = 0
-    val model: CategoryViewModel by viewModels()
+    lateinit var model: CategoryViewModel
     var arrlist: ArrayList<Category> = arrayListOf()
     private lateinit var adapter: ThemeAdapter
 
@@ -49,7 +50,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
 
 
        // binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        val model: CategoryViewModel by viewModels() {
+            CategoryViewModel.Factory(
+                (application as App),
+                (application as App).repository
+            )
+        }
+        var category:Category = Category()
+        category.t_name="Nature1"
+        category.t_thumb="This is First Pic"
+       model.postreq(category)
         model.allFoodItems.observe(
             this) {
             arrlist = it as ArrayList<Category>
@@ -61,7 +71,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
 
     private fun SetupData() {
         var layoutManager: GridLayoutManager
-        adapter = ThemeAdapter(this, this)
+        adapter = ThemeAdapter(this)
         layoutManager = GridLayoutManager(this, 2)
         binding.recyclerview.layoutManager =
             layoutManager
@@ -74,9 +84,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
         super.attachBaseContext(newBase)
     }
 
-    override fun createViewModel(): CategoryViewModel {
-        return  model
-    }
+//    override fun createViewModel(): CategoryViewModel {
+//        model:CategoryViewModel by viewModels() {
+//            CategoryViewModel.CategoryViewModelFactory((application as App).repository)
+//        }
+//        return  model
+//    }
 
     override fun createViewBinding(layoutInflater: LayoutInflater?): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater!!);
