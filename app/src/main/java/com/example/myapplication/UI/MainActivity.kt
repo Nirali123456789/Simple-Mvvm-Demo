@@ -56,10 +56,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
                 (application as App).repository
             )
         }
-        var category:Category = Category()
-        category.t_name="Nature1"
-        category.t_thumb="This is First Pic"
-       model.postreq(category)
+        model.insertAll()
+
         model.allFoodItems.observe(
             this) {
             arrlist = it as ArrayList<Category>
