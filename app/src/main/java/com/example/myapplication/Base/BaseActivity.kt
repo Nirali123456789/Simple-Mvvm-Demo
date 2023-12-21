@@ -19,6 +19,6 @@ public abstract class BaseActivity<Binding :ViewDataBinding ,vm: ViewModel> : Ap
         super.onCreate(savedInstanceState)
         binding = createViewBinding(LayoutInflater.from(this))
         setContentView(binding!!.getRoot())
-      //  viewModel = createViewModel()
+
     }
 }

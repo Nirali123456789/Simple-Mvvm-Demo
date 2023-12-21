@@ -3,10 +3,10 @@ package com.example.myapplication.RoomDatabase
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.myapplication.Models.Category
+import com.example.myapplication.Models.Jokes
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = [Category::class], version = 1,exportSchema = false)
+@Database(entities = [Jokes::class], version = 1,exportSchema = false)
 abstract class CallDatabase : RoomDatabase() {
 
     abstract val categorydao: CategoryDao
@@ -41,7 +41,7 @@ abstract class CallDatabase : RoomDatabase() {
 //                    // if you want to populate database
 //                    // when RoomDatabase is created
 //                    // populate here
-//                    foodItemRoomDB.categorydao.insert(Category("2","100f","",""))
+//                    foodItemRoomDB.categorydao.insert(Jokes("2","100f","",""))
 //                }
 //            }
         }

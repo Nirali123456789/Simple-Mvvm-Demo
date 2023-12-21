@@ -5,9 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,27 +15,26 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.example.myapplication.Interface.onItemClick
-import com.example.myapplication.Models.Category
+import com.example.myapplication.Models.Jokes
 import com.example.myapplication.R
 import com.example.myapplication.databinding.PosterItemsBinding
 
 
 class ThemeAdapter(var context: Activity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var list: ArrayList<Category> = arrayListOf()
+    var list: ArrayList<Jokes> = arrayListOf()
     private val LOADING = 0
     private val ITEM = 1
     private var isLoadingAdded = false
 
 
-    companion object ListItemCallback : DiffUtil.ItemCallback<Category>() {
-        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+    companion object ListItemCallback : DiffUtil.ItemCallback<Jokes>() {
+        override fun areItemsTheSame(oldItem: Jokes, newItem: Jokes): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem.t_name == newItem.t_name
+        override fun areContentsTheSame(oldItem: Jokes, newItem: Jokes): Boolean {
+            return oldItem.setup == newItem.setup
         }
     }
 
@@ -62,7 +59,7 @@ class ThemeAdapter(var context: Activity) :
         return PosterViewHolder(binding)
     }
 
-    fun setData(posterList: ArrayList<Category>) {
+    fun setData(posterList: ArrayList<Jokes>) {
 
         list = posterList!!
         notifyDataSetChanged()
@@ -88,7 +85,7 @@ class ThemeAdapter(var context: Activity) :
     }
 
 
-    fun add(movie: Category) {
+    fun add(movie: Jokes) {
         list.add(movie)
         notifyItemInserted(list.size - 1)
     }
@@ -99,46 +96,47 @@ class ThemeAdapter(var context: Activity) :
 
 
         fun setData(
-            poster: Category,
+            poster: Jokes,
             context: Context
 
         ) {
-            Log.d("TAG", "setData:1223 " + poster.t_name)
             view.li1.setOnClickListener {
                 Log.d("TAG", "setData: " + "onclick")
                 //onItemClick1.onClick(poster, adapterPosition)
 
 
             }
-            Glide.with(context).asBitmap().load(poster.t_thumb)
-                .centerCrop()
-
-                .placeholder(R.drawable.ic_placeholder)
-                .apply(RequestOptions().dontAnimate())
-                .listener(object : RequestListener<Bitmap?> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Bitmap?>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        Log.d("TAG", "setData: " + e!!.message)
-                        return true
-                    }
-
-
-                    override fun onResourceReady(
-                        resource: Bitmap?,
-                        model: Any?,
-                        target: Target<Bitmap?>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        Log.d("TAG", "setData: " + "loadedd" + poster.t_thumb)
-                        return false
-                    }
-
-                }).diskCacheStrategy(DiskCacheStrategy.ALL).into(view.imgPoster)
+            view.delievery.text =poster.delivery
+            view.setUp.text =poster.setup
+//            Glide.with(context).asBitmap().load(poster.t_thumb)
+//                .centerCrop()
+//
+//                .placeholder(R.drawable.ic_placeholder)
+//                .apply(RequestOptions().dontAnimate())
+//                .listener(object : RequestListener<Bitmap?> {
+//                    override fun onLoadFailed(
+//                        e: GlideException?,
+//                        model: Any?,
+//                        target: Target<Bitmap?>?,
+//                        isFirstResource: Boolean
+//                    ): Boolean {
+//                        Log.d("TAG", "setData: " + e!!.message)
+//                        return true
+//                    }
+//
+//
+//                    override fun onResourceReady(
+//                        resource: Bitmap?,
+//                        model: Any?,
+//                        target: Target<Bitmap?>?,
+//                        dataSource: DataSource?,
+//                        isFirstResource: Boolean
+//                    ): Boolean {
+//                        Log.d("TAG", "setData: " + "loadedd" + poster.t_thumb)
+//                        return false
+//                    }
+//
+//                }).diskCacheStrategy(DiskCacheStrategy.ALL).into(view.imgPoster)
 
 
         }

@@ -1,12 +1,15 @@
 package com.example.myapplication.Retrofit
 
-import com.example.myapplication.Models.Category
+import com.example.myapplication.Models.Jokes
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiInterface {
 
-    @POST("api/v1/create")
-    fun sendReq(@Body requestModel: Category) : Call<Category>
+
+    @GET("Programming")
+    fun getJokes(@Query("amount") amount: Int): Call<ArrayList<Jokes>>
+
 }

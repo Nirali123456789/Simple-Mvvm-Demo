@@ -1,12 +1,9 @@
 package com.example.myapplication.RoomDatabase
 
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.example.myapplication.Models.Category
-import kotlinx.coroutines.flow.Flow
+import com.example.myapplication.Models.Jokes
 
 
 @Dao
@@ -15,9 +12,9 @@ interface CategoryDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertAll(Courses: ArrayList<Category>)
+     fun insertAll(Courses: ArrayList<Jokes>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(foodItem: Category)
+    suspend fun insert(foodItem: Jokes)
       
 }
