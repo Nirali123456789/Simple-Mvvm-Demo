@@ -1,19 +1,19 @@
 package com.example.myapplication.UI
 
-import android.R
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.Adapters.ThemeAdapter
 import com.example.myapplication.App
 import com.example.myapplication.Base.BaseActivity
+import com.example.myapplication.Models.Joke
 import com.example.myapplication.Models.Jokes
 import com.example.myapplication.Retrofit.RetrofitClient
 import com.example.myapplication.Viewmodels.CategoryViewModel
@@ -26,12 +26,8 @@ import retrofit2.Response
 class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
     var list: ArrayList<Jokes> = arrayListOf()
     private var currentApiVersion = 0
-    var arrlist: ArrayList<Jokes> = arrayListOf()
+    var arrlist: ArrayList<Joke> = arrayListOf()
     private lateinit var adapter: ThemeAdapter
-
-    companion object {
-        private const val REQUEST_ID_BECOME_CALL_SCREENER = 1
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         currentApiVersion = Build.VERSION.SDK_INT
@@ -48,34 +44,27 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
                 (application as App).repository
             )
         }
-        val call: Call<ArrayList<Jokes>> = RetrofitClient.instance?.getMyApi()!!.getJokes(10)
-        call.enqueue(object : Callback<ArrayList<Jokes>> {
+        val call: Call<Jokes> = RetrofitClient.instance?.getMyApi()!!.getJokes(15,15)
+        call.enqueue(object : Callback<Jokes> {
             override fun onResponse(
-                call: Call<ArrayList<Jokes>>,
-                response: Response<ArrayList<Jokes>>
+                call: Call<Jokes>,
+                response: Response<Jokes>
             ) {
                 Log.e("onResponse", "onResponse: ${response.body()}")
-                val jokesList: ArrayList<Jokes> = (response.body())!!
-//                val oneHeroes = arrayOfNulls<String>(myheroList.size)
-//                for (i in myheroList.indices) {
-//                    oneHeroes[i] = myheroList[i].t_name
-//                }
-                model.insertAll(jokesList)
-//                superListView.setAdapter(
-//                    ArrayAdapter<String?>(
-//                        applicationContext,
-//                        R.layout.simple_list_item_1,
-//                        oneHeroes
-//                    )
-//                )
+                val jokesList: Jokes = (response.body())!!
+                list.add(jokesList)
+                model.insertAll(list)
+
+
             }
 
-            override fun onFailure(call: Call<ArrayList<Jokes>>, t: Throwable) {
+            override fun onFailure(call: Call<Jokes>, t: Throwable) {
                 Toast.makeText(
                     applicationContext,
                     "An error has occured${t.message}",
                     Toast.LENGTH_LONG
                 ).show()
+                Log.d("TAG", "onFailure: ${t.message}")
             }
         })
 
@@ -84,8 +73,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
         model.allFoodItems.observe(
             this
         ) {
-            Log.d("getJokes", "getJokes: ${it[0].setup}")
-            arrlist = it as ArrayList<Jokes>
+            Log.d("getJokes", "getJokes: ${it[0].jokes.size}")
+            arrlist = it[0].jokes
+            for (i in arrlist.indices)
+            {
+                Log.d("TAG", "onBindViewHolder: ${arrlist.get(i)}")
+            }
             adapter.setData(arrlist)
         }
         setupData()
@@ -94,7 +87,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, CategoryViewModel>() {
 
     private fun setupData() {
         adapter = ThemeAdapter(this)
-        var layoutManager: GridLayoutManager = GridLayoutManager(this, 2)
+        var layoutManager: LinearLayoutManager = LinearLayoutManager(this)
         binding.recyclerview.layoutManager =
             layoutManager
         binding.recyclerview.itemAnimator = DefaultItemAnimator()

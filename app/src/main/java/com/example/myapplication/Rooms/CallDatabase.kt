@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.myapplication.Models.Jokes
+import com.example.myapplication.converters.Converters
 import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [Jokes::class], version = 1,exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class CallDatabase : RoomDatabase() {
 
     abstract val categorydao: CategoryDao

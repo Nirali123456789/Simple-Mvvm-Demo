@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_2sdp"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/li_1"
+    <RelativeLayout
+        android:id="@+id/frame_1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
-        android:layout_margin="@dimen/_2sdp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp">
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_poster"
+        <ImageView
+            android:id="@+id/imgPoster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_placeholder"
+            android:visibility="gone" />
 
-            >
+        <TextView
+            android:id="@+id/setUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:visibility="visible" />
 
-            <RelativeLayout
-                android:id="@+id/frame_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/delievery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setUp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="@string/app_name"
+            android:textColor="@color/grey" />
 
-                <ImageView
-                    android:visibility="gone"
-                    android:id="@+id/imgPoster"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_placeholder" />
-                <TextView
-                    android:id="@+id/setUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                />
-                <TextView
-                    android:layout_below="@+id/setUp"
-                    android:id="@+id/delievery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                   />
+    </RelativeLayout>
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#B8B7B7" />
 
 
-    </LinearLayout>
-</layout>
+</LinearLayout>

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface ApiInterface {
 
 
-    @GET("Programming")
-    fun getJokes(@Query("amount") amount: Int): Call<ArrayList<Jokes>>
+    @GET("Christmas")
+    fun getJokes(@Query("amount") amount: Int,@Query("twopart") twopart:Int): Call<Jokes>
 
 }
