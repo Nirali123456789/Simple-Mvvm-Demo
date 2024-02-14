@@ -1,65 +1,35 @@
-MVVM Demo App (Android)
-This is a simple Android app demonstrating the Model-View-ViewModel (MVVM) architectural pattern. MVVM is a design pattern that separates the concerns of an app into three components: Model, View, and ViewModel. This approach promotes a more organized and maintainable codebase by decoupling the user interface from the business logic.
+MVVM Demo with Retrofit and Joke API
 
-Features
-The MVVM Demo App includes the following features:
+This is a simple Android app demonstrating the Model-View-ViewModel (MVVM) architecture pattern. It fetches jokes from a Joke API using Retrofit and displays them in the UI.
 
-User Login: Allows users to log in using their credentials.
-User Profile: Displays the user's profile information once logged in.
-To-Do List: Provides a to-do list where users can add, update, and delete tasks.
-Task Status: Tracks the status of each task (e.g., completed, pending).
-Requirements
-To run the MVVM Demo App, you will need the following:
 
-Android Studio installed on your development machine.
-An Android emulator or a physical Android device to run the app.
-Internet connectivity to fetch user profile data.
-Installation
-Clone the repository from GitHub:
+Prerequisites
+Before you begin, make sure you have the following installed:
+
+Android Studio
+Git
+Getting Started
+Clone the repository:
 
 bash
-Copy code
-git clone https://github.com/your-username/mvvm-demo-app.git
-Open the project in Android Studio.
+1.Copy code
+git clone https://github.com/your-username/mvvm-retrofit-joke-demo.git
 
-Build and run the app on the emulator or a physical Android device.
+2.Open the project in Android Studio.
 
-Architecture
-The MVVM Demo App follows the Model-View-ViewModel (MVVM) architectural pattern:
+3.Build and run the app on an emulator or a physical device.
 
-Model: Represents the data and business logic of the application. It includes entities such as user data and tasks.
-
-View: The user interface components responsible for displaying information and capturing user input. It includes Activities, Fragments, and UI elements.
-
-ViewModel: Acts as an intermediary between the Model and the View. It contains the presentation logic, fetches data from the Model, and prepares it for display in the View.
-
-Folder Structure
-The app's folder structure is organized as follows:
-
-lua
-Copy code
-mvvm-demo-app/
-|-- app/
-|   |-- src/
-|       |-- main/
-|           |-- java/
-|               |-- com.example.mvvmdemo/
-|                   |-- data/              # Data-related classes (e.g., repositories)
-|                   |-- model/             # Data models and entities
-|                   |-- ui/                # User interface components (Activities/Fragments)
-|                   |-- utils/             # Utility classes and helpers
-|                   |-- viewmodel/         # ViewModels
-|           |-- res/                      # Resources (layouts, drawables, strings, etc.)
-|-- build.gradle
-|-- README.md
 Libraries Used
-The MVVM Demo App utilizes the following libraries:
+Retrofit: A type-safe HTTP client for Android.
+ViewModel: Part of the Android Architecture Components, it helps to store and manage UI-related data in a lifecycle-conscious way.
+LiveData: An observable data holder class that is lifecycle-aware.
 
-Retrofit for network requests.
-Room for local data storage.
-RxJava for reactive programming.
-Contributions
-Contributions to the MVVM Demo App are welcome! If you find any bugs or want to add new features, feel free to submit a pull request. Please ensure that your code follows the MVVM pattern and includes appropriate unit tests.
+Screenshots:
+
+<img width="411" alt="Screenshot 2024-01-05 at 3 57 09 PM" src="https://github.com/Nirali123456789/Simple-Mvvm-Demo/assets/90322848/db8f2e8c-17be-4178-8d8e-0db3b89c92dc">
+
+
+
 
 License
 The MVVM Demo App is licensed under the MIT License.
