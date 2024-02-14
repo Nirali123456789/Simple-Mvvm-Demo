@@ -3,7 +3,7 @@ package com.example.myapplication.RoomDatabase
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.myapplication.Models.Jokes
+import com.example.myapplication.models.Jokes
 
 
 @Dao

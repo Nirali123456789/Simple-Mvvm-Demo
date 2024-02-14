@@ -1,9 +1,9 @@
-package com.example.myapplication.Viewmodels
+package com.example.myapplication.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.myapplication.Models.Jokes
-import com.example.myapplication.Repository.CategoryRepo
+import com.example.myapplication.models.Jokes
+import com.example.myapplication.repository.CategoryRepo
 import kotlinx.coroutines.*
 
 class CategoryViewModel(private val foodItemRepository: CategoryRepo) : ViewModel() {

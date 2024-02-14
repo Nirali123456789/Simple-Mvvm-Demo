@@ -1,25 +1,15 @@
-package com.example.myapplication.Adapters
+package com.example.myapplication.adapters
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
-import com.example.myapplication.Models.Joke
-import com.example.myapplication.Models.Jokes
-import com.example.myapplication.R
+import com.example.myapplication.models.Joke
+import com.example.myapplication.models.Jokes
 import com.example.myapplication.databinding.PosterItemsBinding
-import java.util.Objects
 
 
 class ThemeAdapter(var context: Activity) :

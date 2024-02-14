@@ -1,7 +1,7 @@
 package com.example.myapplication.converters
 
 import androidx.room.TypeConverter
-import com.example.myapplication.Models.Joke
+import com.example.myapplication.models.Joke
 import com.google.gson.Gson
 
 class Converters {

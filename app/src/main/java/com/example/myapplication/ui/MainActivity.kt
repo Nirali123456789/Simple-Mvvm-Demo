@@ -1,4 +1,4 @@
-package com.example.myapplication.UI
+package com.example.myapplication.ui
 
 import android.content.Context
 import android.os.Build
@@ -8,15 +8,14 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.Adapters.ThemeAdapter
+import com.example.myapplication.adapters.ThemeAdapter
 import com.example.myapplication.App
-import com.example.myapplication.Base.BaseActivity
-import com.example.myapplication.Models.Joke
-import com.example.myapplication.Models.Jokes
-import com.example.myapplication.Retrofit.RetrofitClient
-import com.example.myapplication.Viewmodels.CategoryViewModel
+import com.example.myapplication.base.BaseActivity
+import com.example.myapplication.models.Joke
+import com.example.myapplication.models.Jokes
+import com.example.myapplication.retrofit.RetrofitClient
+import com.example.myapplication.viewmodels.CategoryViewModel
 import com.example.myapplication.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback

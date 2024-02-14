@@ -3,7 +3,7 @@ package com.example.myapplication.RoomDatabase
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.myapplication.Models.Jokes
+import com.example.myapplication.models.Jokes
 import com.example.myapplication.converters.Converters
 import kotlinx.coroutines.CoroutineScope
 

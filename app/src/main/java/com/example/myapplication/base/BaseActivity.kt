@@ -1,11 +1,10 @@
-package com.example.myapplication.Base
+package com.example.myapplication.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.Viewmodels.BaseViewModel
 
 
 public abstract class BaseActivity<Binding :ViewDataBinding ,vm: ViewModel> : AppCompatActivity() {
